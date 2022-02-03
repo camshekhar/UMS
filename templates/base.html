@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    {% block head %}{% endblock head %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>{% block title %}{% endblock title %} </title>
+    <style>
+        body {
+            background-color: #c8d8e4;
+        }
+
+        .bg {
+            background-color: #5a3dda;
+        }
+
+        {% block style %}
+
+        {% endblock style %}
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid mt-2 ms-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bolder ms-5" href="/">User Management System</a>
+                <button style="background-image: linear-gradient(to top left, black,#210a85, #65a5d6);"
+                    class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    </ul>
+                    {% block navli %}{% endblock navli %}
+                    <p class="nav-link m-0 p-0" aria-current="page">{% block additem %}{% endblock additem %}</p>
+                    
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    {% block body %}
+    {% endblock body %}
+  
+    <div class="container-fluid">
+        <hr>
+        <footer class="p-3 text-center text-light sticky-bottom mb-2" style="background-color:#6446ec;">&copy;<a
+                href="/" class="text-dark text-decoration-none "> UMS </a>
+            || Made with <text class="text-danger">&hearts;</text> by -> <a class="text-dark text-decoration-none"
+                href="https://www.linkedin.com/in/asha-soren-5104081b8/">AKS</a>
+        </footer>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

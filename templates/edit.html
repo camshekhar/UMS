@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Edit Page{% endblock title %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header text-center fw-bold">
+        Welcome to Edit Page!
+    </div>
+    <div class="row m-5 mt-0">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-header text-center fw-bold">Update Your Details Here.</h5>
+                <form method="POST" action="/update/{{ud.email}}">
+                    {% csrf_token %}
+                    <div class="mb-3 mt-2">
+                        <label for="exampleInputText" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" id="exampleInputText" value="{{ud.fname}}" name="fname">
+                    </div>
+                    <div class="mb-3 mt-2">
+                        <label for="exampleInputText" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" id="exampleInputText" value="{{ud.lname}}" name="lname">
+                    </div>
+                    <div class="mb-3 mt-2">
+                        <label for="exampleInputEmail1" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" value="{{ud.email}}" name="email">
+                    </div>
+                    <div class="mb-3 mt-2">
+                        <label for="exampleInputText" class="form-label">Mobile Number:</label>
+                        <input type="text" class="form-control" id="exampleInputText" value="{{ud.phone}}" name="phone">
+                    </div>
+                    <div class="mb-3 mt-2">
+                        <label for="exampleInputText" class="form-label">Gender:</label>
+                        <select name="gender" class="form-select" required>
+                            <option class="form-control" style="color:black" value="{{ud.gender}}">{{ud.gender}}</option>
+                            <option class="form-control" style="color:black" value="Others">Others</option>
+                            <option class="form-control" style="color:black" value="Male">Male</option>
+                            <option class="form-control" style="color:black" value="Female">Female</option>
+                            <option class="form-control" style="color:black" value="Transgender">Transgender</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning rounded-pill fw-bold ">Update
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+      
+
+{% endblock body %}

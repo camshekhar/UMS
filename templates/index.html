@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block style %}
+
+{% endblock style %}
+
+{% block title %}Home - {{request.user.first_name}} {{request.user.last_name}}{% endblock title %}
+
+
+{% block additem %}
+
+<ul class="navbar-nav ml-auto me-2 ">
+  <li class="nav-item dropdown">
+    <a class="nav-link btn btn-info text-dark fw-bold rounded-pill btn-sm dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      Welcome, {{ request.user.first_name }}
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+      <li><a class="text-center fw-bold dropdown-item" href="{% url 'signout' %}">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+{% endblock additem %}
+
+{% block body %}
+
+<div class="container mt-2 mb-2">
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+      <use xlink:href="#check-circle-fill" />
+    </svg>
+    <div>
+      {{message}}
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  <div class="card text-center">
+    <div class="card-header fw-bold">
+      <h5><strong>Hey! {{request.user.first_name}}</strong>, Welcome to User Management System!</h5>
+    </div>
+  </div>
+  <hr>
+  <div class="card">
+    <div class="card-header text-center fw-bold">
+        <h4><u>Your Personal Details</u></h4>
+    </div>
+    <div class="row m-2">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style="overflow-x:auto;">
+                    <div class="col-sm-12 col-md-12 col-lg-12 d-block m-auto">
+                        <table class=" table fw-bold ">
+                            <thead>
+                                <tr>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Name</th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Username</th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Email
+                                    </th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Phone
+                                    </th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Gender
+                                    </th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">
+                                        Edit/Update</th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Delete
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                <tr>
+                                    
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">{{request.user.first_name}}
+                                        {{d.lname}}</td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">{{request.user.username}}
+                                    </td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">{{request.user.email}}
+                                    </td>
+                                    {% for ud in users_detail %}
+                                    {% if ud.email == request.user.email %}
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">{{ud.phone}}
+                                    </td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">
+                                        {{ud.gender}}</td>
+                                    {% endif %}    
+                                    {% endfor %}    
+                                    <td class="border border-info text-center border-4 p-3 fw-bold "><a href="/edit/{{request.user.email}}"><button
+                                            type="button" class="btn btn-warning">Edit/Update</button></a></td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold "><a href="/delete_own/{{request.user.username}}"><button
+                                            type="button" class="btn btn-danger">Delete</button></a></td>    
+                                </tr>
+                                
+                                <blockquote><p class="text-danger fw-bold"> * Attention: By Deleting your own account, you will be Logged Out and will not be able to Log In again in the Future. So, be careful.</p></blockquote>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<hr>
+  
+  <div class="card text-center mt-2">
+    <div class="card-header fw-bold">
+        <h4 class="fw-bold"><u>Other Users Detail</u></h4>
+    </div>
+    <div class="row m-2">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style="overflow-x:auto;">
+                    <div class="col-sm-12 col-md-12 col-lg-12 d-block m-auto">
+                        <table class=" table fw-bold ">
+                            <thead>
+                                <tr>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Name</th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Email
+                                    </th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Phone
+                                    </th>
+                                    
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Gender
+                                    </th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">
+                                        Edit/Update</th>
+                                    <th class="border border-info text-center border-4 p-3 fw-bolder ">Delete
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ud in users_detail %}
+                                {% if ud.email != request.user.email %}
+                                <tr>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">
+                                        {{ud.fname}}
+                                        {{ud.lname}}</td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">
+                                        {{ud.email}}</td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">
+                                        {{ud.phone}}</td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold ">
+                                        {{ud.gender}}</td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold "><a href="/edit/{{ud.email}}"><button
+                                        type="button" class="btn btn-warning">Edit/Update</button></a></td>
+                                    <td class="border border-info text-center border-4 p-3 fw-bold "><a href="/delete_other/{{ud.email}}"><button
+                                            type="button" class="btn btn-danger">Delete</button></a></td>
+
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock body %}

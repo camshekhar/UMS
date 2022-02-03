@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Register Page{% endblock title %}
+{% block additem %}
+<a href="{% url 'signin' %}"><button class="btn rounded-pill fw-bold me-2"
+        style="background-image: linear-gradient(to bottom right, rgb(54, 238, 54), yellow);">Login Here
+    </button></a>
+{% endblock additem %}
+{% block body %}
+<div class="container mt-2 mb-5">
+ {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+        <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>
+        {{message}}
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+ {% endfor %}
+    <div class="card">
+        <div class="card-header text-center fw-bold">
+            Welcome to Register Page!
+        </div>
+        <div class="row m-5 mt-0">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-header text-center fw-bold">Enter Your Details Here.</h5>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputText" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="exampleInputText" name="uname">
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputText" class="form-label">First Name:</label>
+                            <input type="text" class="form-control" id="exampleInputText" name="fname">
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputText" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" id="exampleInputText" name="lname">
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputEmail1" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="email">
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputText" class="form-label">Mobile Number:</label>
+                            <input type="text" class="form-control" id="exampleInputText" name="phone">
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label for="exampleInputText" class="form-label">Gender:</label>
+                            <select name="gender" class="form-select" required>
+                                <option class="form-control" style="color:black" value="Others">Others</option>
+                                <option class="form-control" style="color:black" value="Male">Male</option>
+                                <option class="form-control" style="color:black" value="Female">Female</option>
+                                <option class="form-control" style="color:black" value="Transgender">Transgender</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="pass1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="pass2">
+                        </div>
+                        <button type="submit" class="btn rounded-pill fw-bold "
+                            style="background-image: linear-gradient(to bottom right, rgb(54, 238, 54), yellow);">Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock body %}
